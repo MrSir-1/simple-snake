@@ -12,7 +12,7 @@
 #define SNAKE_STATE 1
 #define FRUIT_STATE 2
 
-#define FPS 20
+#define FPS 4
 
 /* STRUCTURES */
 
@@ -48,7 +48,6 @@ void move_fruit(void) {
     do {
         fruit.x = rand() % WIDTH;
         fruit.y = rand() % HEIGHT;
-
     } while (board[fruit.y][fruit.x] == SNAKE_STATE);
 
     board[fruit.y][fruit.x] = FRUIT_STATE;
@@ -163,7 +162,8 @@ int main(int argc, char **argv) {
                 
                 default: break;
             }
-            
+
+            key = 0;
         }
         
         move_snake(dx, dy);
@@ -172,6 +172,8 @@ int main(int argc, char **argv) {
     }
 
     printf("\nGame over! Score: %d", score);
+
+    _getch();
 
     return 0;
 }
