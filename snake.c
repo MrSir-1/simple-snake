@@ -12,7 +12,7 @@
 #define SNAKE_STATE 1
 #define FRUIT_STATE 2
 
-#define FPS 4
+#define FPS 5
 
 /* STRUCTURES */
 
@@ -87,11 +87,13 @@ void move_snake(int dx, int dy) {
     // Check if the snake is colliding with itself
     if (board[snake.y][snake.x] == SNAKE_STATE) {
         gameover = true;
+        return;
     }
 
     // Check if the snake is out of bounds
     if (snake.x >= WIDTH || snake.x < 0 || snake.y >= HEIGHT || snake.y < 0) {
         gameover = true;
+        return;
     }
 
     board[snake.y][snake.x] = SNAKE_STATE;
@@ -162,8 +164,6 @@ int main(int argc, char **argv) {
                 
                 default: break;
             }
-
-            key = 0;
         }
         
         move_snake(dx, dy);
